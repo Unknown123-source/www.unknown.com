@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Detailed Required Documents Checklist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8fafb; margin: 0; padding: 0; }
+    .wrapper { max-width: 1100px; margin: 32px auto; background: #fff; border-radius: 10px; box-shadow: 0 0 14px 2px #e3e6e8; padding: 30px 20px 50px 20px;}
+    h1 { text-align: center; color: #007acc; margin-bottom: 10px;}
+    .input-name { max-width: 420px; margin: 0 auto 36px auto; background: #e8f4fc; padding: 20px; border-radius: 8px; text-align: center;}
+    .input-name input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;}
+    .input-name button { padding: 10px 20px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;}
+    .input-name button:hover { background-color: #005fa3;}
+    .section { margin-bottom: 24px; }
+    details { border: 1px solid #c9e5fb; border-radius: 7px; background: #f6fbfe; margin: 8px 0; padding: 12px; }
+    summary { font-weight: bold; font-size: 1.14em; color: #007acc; cursor: pointer; outline: none;}
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { margin: 8px 0; padding: 0;}
+    label { display: flex; align-items: flex-start;}
+    input[type="checkbox"] { margin-top: 4px; margin-right: 12px;}
+    .desc { color: #2d4452; font-size: 0.97em; margin: 4px 0 4px 28px; }
+    .note { font-size: 0.98em; color: #5a5a5a; background: #fff7e0; padding: 8px 12px; border-radius: 4px; margin: 8px 0 8px 0;}
+    .save-btn { display: block; width: 220px; margin: 25px auto 0 auto; padding: 13px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;}
+    .save-btn:hover { background-color: #218838;}
+    .success-msg {
+      text-align: center;
+      color: #218838;
+      font-size: 1.1em;
+      margin-top: 16px;
+      margin-bottom: 0;
+      display: none;
+    }
+    @media (max-width: 720px) {.wrapper {padding: 10px 2vw;}}
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>Required Documents Checklist</h1>
+  <div class="input-name" id="inputNameSection">
+    <h2>Enter Applicant Name</h2>
+    <input type="text" id="customerName" placeholder="Full Name" required>
+    <button onclick="proceedToChecklist()">Proceed</button>
+  </div>
+  <div id="mainChecklist" style="display:none;">
+    <div style="margin-bottom:12px;">
+      <b>Applicant Name:</b> <span id="displayName"></span>
+    </div>
+
+    <!-- 1. Academic Documents -->
+    <div class="section">
+      <details open>
+        <summary>1. Academic Documents – Nepal</summary>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" data-id="transcripts">
+              Individual Semester/Year-wise Transcripts
+            </label>
+            <div class="desc">
+              <ul>
+                <li>Required for <b>all semesters or academic years</b>.</li>
+                <li>If you have failed subjects, transcripts must show <u>each attempt separately</u>.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" data-id="provisional">
+              Provisional Certificate
+            </label>
+            <div class="desc">
+              A temporary certificate issued until the final degree is available.
+            </div>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" data-id="character">
+              Character Certificate
+            </label>
+            <div class="desc">
+              A document showing your conduct/behavior during your studies.
+            </div>
+          </li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 2. Passport Documents -->
+    <div class="section">
+      <details>
+        <summary>2. Passport Documents</summary>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" data-id="passport-current">
+              Current Passport (all pages)
+            </label>
+            <div class="desc">Submit all pages, including blank pages.</div>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" data-id="passport-previous">
+              Previous Passport (if any, all pages)
+            </label>
+            <div class="desc">Submit all pages of any previous passports.</div>
+          </li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 3. Work Experience Documents -->
+    <div class="section">
+      <details>
+        <summary>3. Work Experience Documents</summary>
+        <ul>
+          <li>
+            <label><input type="checkbox" data-id="experience-letter">Work Experience Letter</label>
+            <div class="desc">From your employer(s), confirming your job role and duration.</div>
+          </li>
+          <li>
+            <label><input type="checkbox" data-id="pan">Personal PAN Number</label>
+            <div class="desc">Permanent Account Number for tax purposes.</div>
+          </li>
+          <li>
+            <label><input type="checkbox" data-id="salary-bank">Salary Bank Statement</label>
+            <div class="desc">Bank statements showing salary deposits.</div>
+          </li>
+          <li>
+            <label><input type="checkbox" data-id="tds">TDS Payment Statement</label>
+            <div class="desc">Tax Deducted at Source record from employer.</div>
+          </li>
+          <li>
+            <label><input type="checkbox" data-id="tax-return">Income Tax Payment Return</label>
+            <div class="desc">Proof of income tax filed and paid.</div>
+          </li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 4. Additional Experience (After Grade 12) -->
+    <div class="section">
+      <details>
+        <summary>4. Additional Experience (After Grade 12)</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="training-cert">Training Certificates</label>
+            <div class="desc">Any official training completed.</div>
+          </li>
+          <li><label><input type="checkbox" data-id="internship-cert">Internship Certificates</label>
+            <div class="desc">Documents showing internships completed.</div>
+          </li>
+          <li><label><input type="checkbox" data-id="volunteer-cert">Volunteer Work Certificates</label>
+            <div class="desc">Proof of any volunteer activities.</div>
+          </li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 5. Work Experience & Gap Justification (Bachelor's Students) -->
+    <div class="section">
+      <details>
+        <summary>5. Work Experience & Gap Justification (For Bachelor's Students)</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="gap-experience">Work Experience Letter(s)</label>
+            <div class="desc">To explain/justify any gap after Grade 12.</div>
+          </li>
+          <li><label><input type="checkbox" data-id="gap-salary-bank">Salary Bank Statement (12 months)</label>
+            <div class="desc">Shows salary deposits in your bank account.</div>
+          </li>
+          <li><label><input type="checkbox" data-id="gap-payslips">Payslips (if available)</label>
+            <div class="desc">Monthly salary slips from your employer.</div>
+          </li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 6. Membership of Professional Associations -->
+    <div class="section">
+      <details>
+        <summary>6. Membership of Professional Associations (if any)</summary>
+        <div class="desc">Submit proof of membership or registration with any professional body or council. Examples include:
+           <ul>
+             <li>Nursing Council</li>
+             <li>Engineering Council</li>
+             <li>Medical/Pathology Council</li>
+             <li>Any other recognized professional association</li>
+           </ul>
+        </div>
+        <ul>
+          <li><label><input type="checkbox" data-id="professional-membership">Professional Membership Proof</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 7. English Language Proficiency Test Results -->
+    <div class="section">
+      <details>
+        <summary>7. English Language Proficiency Test Results</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="ielts">IELTS Result</label></li>
+          <li><label><input type="checkbox" data-id="pte">PTE Result</label></li>
+          <li><label><input type="checkbox" data-id="toefl">TOEFL Result</label></li>
+        </ul>
+        <div class="desc">
+          <ul>
+            <li>Submit the official score report or TRF (Test Report Form).</li>
+            <li>Make sure the test is valid (not expired) at the time of application.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- 8. Birth Verification -->
+    <div class="section">
+      <details>
+        <summary>8. Birth Verification</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="birth-verification">Birth Verification Document</label></li>
+          <li><label><input type="checkbox" data-id="birth-translation">Certified English Translation (if written in Nepali)</label></li>
+        </ul>
+        <div class="desc">
+          <ul>
+            <li>Issued by the local government office (ward office or municipality).</li>
+            <li>Includes your full name, date & place of birth, parents' names.</li>
+            <li>Must be officially signed and stamped.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- 9. Citizenship Certificate -->
+    <div class="section">
+      <details>
+        <summary>9. Citizenship Certificate</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="citizenship">Citizenship Certificate (front & back)</label></li>
+          <li><label><input type="checkbox" data-id="citizenship-translation">Certified English Translation (if not in English)</label></li>
+        </ul>
+        <div class="desc">Legal document proving you are a citizen of Nepal. Must be issued by Nepal Government.</div>
+      </details>
+    </div>
+
+    <!-- 10. Income from Salary (Nepal or Foreign) -->
+    <div class="section">
+      <details>
+        <summary>10. Income from Salary (Nepal or Foreign)</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="work-ref-letter">Work Reference Letter (Compulsory)</label></li>
+          <li><label><input type="checkbox" data-id="salary-cert">Salary Certificate</label></li>
+          <li><label><input type="checkbox" data-id="salary-payslips">Salary Slips / Pay Slips (Last 12 months)</label></li>
+          <li><label><input type="checkbox" data-id="salary-bank-statement">Salary Bank Statement (Last 12 months - Compulsory)</label></li>
+          <li><label><input type="checkbox" data-id="salary-tds">TDS Statement (Minimum 12 months)</label></li>
+          <li><label><input type="checkbox" data-id="salary-itr">Income Tax Return (last 3 years)</label></li>
+          <li><label><input type="checkbox" data-id="personal-pan">Personal PAN Number (Nepal/India)</label></li>
+        </ul>
+        <div class="note">For those on Working Visa, Foreign Citizen, Australian PR, or USA Green Card holders.</div>
+      </details>
+    </div>
+
+    <!-- 11. Income from Business -->
+    <div class="section">
+      <details>
+        <summary>11. Income from Business</summary>
+        <div class="desc"><b>Business Documents</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="business-reg">Business Registration Certificate</label></li>
+          <li><label><input type="checkbox" data-id="business-pan-vat">PAN or VAT Certificate</label></li>
+        </ul>
+        <div class="desc"><b>Financial Documents</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="audit-report">Audit Report (Recent Fiscal Year)</label></li>
+          <li><label><input type="checkbox" data-id="business-tax">Proof of Business Income Tax Payments (Last 3 years)</label></li>
+          <li><label><input type="checkbox" data-id="business-bank-statement">Business Bank Statement (Last 12 months)</label></li>
+        </ul>
+        <div class="desc"><b>If Partnership Business (Only if applicable)</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="partnership-deed">Partnership Deed</label></li>
+          <li><label><input type="checkbox" data-id="share-reg-book">Share Registration Book</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 12. Income from House Rent and/or Land Lease -->
+    <div class="section">
+      <details>
+        <summary>12. Income from House Rent and/or Land Lease</summary>
+        <div class="desc"><b>Rental or Lease Documents</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="rent-agreement">House Rent or Land Lease Agreement</label></li>
+          <li><label><input type="checkbox" data-id="rent-citizenship">Citizenship Certificates (Tenant & Landlord)</label></li>
+          <li><label><input type="checkbox" data-id="rent-bank-statement">Bank Statement (Last 12 months)</label></li>
+        </ul>
+        <div class="desc"><b>Tax and Income Proof</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="rent-tax-receipt">Income Tax Payment Receipts (At least 1 year)</label></li>
+          <li><label><input type="checkbox" data-id="land-house-tax">Land and House Tax Payment Receipts (Last 3 years)</label></li>
+        </ul>
+        <div class="desc"><b>Ownership and Business Documents</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="property-cert">Property Ownership Certificate (Lal Purja)</label></li>
+          <li><label><input type="checkbox" data-id="rent-biz-reg">Business Registration Certificate (if property rented by organization)</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 13. Income from Vehicle Lease -->
+    <div class="section">
+      <details>
+        <summary>13. Income from Vehicle Lease</summary>
+        <div class="desc"><b>Identity & Ownership</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="vehicle-citizenship">Citizenship Certificate or Driving Licence</label></li>
+          <li><label><input type="checkbox" data-id="vehicle-bluebook">Vehicle Registration Certificate (Blue Book)</label></li>
+        </ul>
+        <div class="desc"><b>Public Transport (If Applicable)</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="route-permit">Route Permit</label></li>
+          <li><label><input type="checkbox" data-id="transport-recommend">Recommendation Letter (from association)</label></li>
+        </ul>
+        <div class="desc"><b>Tax & Financial Documents</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="vehicle-tax">Tax Payment Receipts (At least 1 year)</label></li>
+          <li><label><input type="checkbox" data-id="vehicle-bank-statement">Bank Statement (Last 12 months)</label></li>
+          <li><label><input type="checkbox" data-id="vehicle-income-tax">Tax Payment Proof for Vehicle Income (Last 3 years)</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 14. Income from Pension -->
+    <div class="section">
+      <details>
+        <summary>14. Income from Pension</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="pension-book">Pension Book (Pension Patta)</label></li>
+          <li><label><input type="checkbox" data-id="pension-ppo">PPO (Pension Payment Order)</label></li>
+          <li><label><input type="checkbox" data-id="pension-bank-statement">Pension Bank Account Statement (Last 12 months)</label></li>
+          <li><label><input type="checkbox" data-id="pension-verification">Pension Verification Letter</label></li>
+        </ul>
+        <div class="desc">Issued by the relevant government office or Indian Embassy (for Indian pensions).</div>
+      </details>
+    </div>
+
+    <!-- 15. Income from Agriculture -->
+    <div class="section">
+      <details>
+        <summary>15. Income from Agriculture</summary>
+        <div class="desc"><b>Verification & Ownership</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="agri-verification">Agriculture Income Verification Letter (Woda)</label></li>
+          <li><label><input type="checkbox" data-id="agri-recommend">Recommendation Letter (Co-operatives/Orgs)</label></li>
+          <li><label><input type="checkbox" data-id="agri-property">Property Ownership Certificate (Lal Purja)</label></li>
+        </ul>
+        <div class="desc"><b>Tax & Payment Records</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="agri-land-tax">Land Tax Payment Receipts (Last 3 years)</label></li>
+          <li><label><input type="checkbox" data-id="agri-tax-verification">Income Tax Verification (tax-exempt proof)</label></li>
+          <li><label><input type="checkbox" data-id="agri-itr">Income Tax Return (Last 3 years, optional)</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 16. Income from Fixed Deposit -->
+    <div class="section">
+      <details>
+        <summary>16. Income from Fixed Deposit</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="fd-bank-interest">Bank Interest from A-Level Bank</label></li>
+          <li><label><input type="checkbox" data-id="fd-bank-statement">Bank Statement (Last 6 months)</label></li>
+          <li><label><input type="checkbox" data-id="fd-receipts">Fixed Deposit Receipt(s)</label></li>
+          <li><label><input type="checkbox" data-id="fd-duration">Fixed Deposit Duration (at least 1 year)</label></li>
+          <li><label><input type="checkbox" data-id="fd-recommend">Recommendation Letter from Bank</label></li>
+        </ul>
+        <div class="desc">Other types of income and evidence are acceptable after discussion and verification with the concerned authority.</div>
+      </details>
+    </div>
+
+    <!-- 17. Income from Share Market -->
+    <div class="section">
+      <details>
+        <summary>17. Income from Share Market</summary>
+        <div class="note">⚠️ Note: This income source is <b>not recommended by DHA (Australia)</b>.</div>
+        <ul>
+          <li><label><input type="checkbox" data-id="share-verification">Verification of Income from Broker</label></li>
+          <li><label><input type="checkbox" data-id="share-transaction">Share Transactions Account Statement</label></li>
+          <li><label><input type="checkbox" data-id="share-bank-statement">Bank Statement (Share transactions)</label></li>
+          <li><label><input type="checkbox" data-id="share-tds">TDS Payment Record (on share earnings)</label></li>
+          <li><label><input type="checkbox" data-id="share-pan">Personal PAN Number</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 18. Woda (Ward Office) Documents -->
+    <div class="section">
+      <details>
+        <summary>18. Woda (Ward Office) Documents</summary>
+        <div class="desc"><b>Personal & Family Verification</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="relationship-verif">Relationship Verification Letter (Woda)</label></li>
+          <li><label><input type="checkbox" data-id="family-citizenship">Citizenship Certificates (All family members)</label></li>
+        </ul>
+        <div class="desc"><b>Income & Address Verification</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="annual-income-verif">Annual Income Verification Letter (Woda)</label></li>
+          <li><label><input type="checkbox" data-id="address-verif">Address Verification</label></li>
+        </ul>
+        <div class="desc"><b>Contact Details</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="contact-details">Updated Phone/Email (applicant/family)</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- 19. Property Valuation Report -->
+    <div class="section">
+      <details>
+        <summary>19. Property Valuation Report</summary>
+        <ul>
+          <li><label><input type="checkbox" data-id="property-value-report">Property Valuation Report</label></li>
+          <li><label><input type="checkbox" data-id="property-certificate">Property Ownership Certificate (Lal Purja)</label></li>
+          <li><label><input type="checkbox" data-id="property-tax">Land and House Tax Payment Receipts (Last 3 years)</label></li>
+        </ul>
+        <div class="desc">
+          <b>Valuation Requirement:</b> Minimum NPR 1.5 Crore (single), NPR 2.5 Crore (couple).<br>
+          <b>Prepared by:</b> Registered valuators/engineers.
+        </div>
+      </details>
+    </div>
+
+    <!-- 20. Funds – Bank Balance or Education Loan -->
+    <div class="section">
+      <details>
+        <summary>20. Funds – Bank Balance or Education Loan</summary>
+        <div class="desc"><b>If Using Bank Balance / Savings</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="bank-balance-cert">Bank Balance Certificate (Original)</label></li>
+          <li><label><input type="checkbox" data-id="bank-balance-statement">Bank Statement (Recent 6-12 months)</label></li>
+          <li><label><input type="checkbox" data-id="evidence-source-funds">Evidence of Source of Funds</label></li>
+        </ul>
+        <div class="desc"><b>Funds – Education Loan (Only from A-Level Commercial Banks)</b></div>
+        <ul>
+          <li><label><input type="checkbox" data-id="edu-loan-sanction-letter">Education Loan Sanction Letter</label></li>
+          <li><label><input type="checkbox" data-id="loan-mortgage-deed">Loan Mortgage Deed</label></li>
+          <li><label><input type="checkbox" data-id="edu-loan-disbursement-letter">Education Loan Disbursement Letter</label></li>
+          <li><label><input type="checkbox" data-id="edu-loan-account-statement">Education Loan Account Statement</label></li>
+          <li><label><input type="checkbox" data-id="disbursement-account-statement">Disbursement Account Statement</label></li>
+          <li><label><input type="checkbox" data-id="loan-land-cert">Land Ownership Certificate (Lal Purja) for mortgage</label></li>
+          <li><label><input type="checkbox" data-id="loan-tax-receipts">Land and House Tax Payment Receipts (Last 3 years)</label></li>
+        </ul>
+      </details>
+    </div>
+
+    <button class="save-btn" onclick="saveChecklist()">Save Checklist</button>
+    <div class="success-msg" id="successMsg">Checklist saved successfully!</div>
+  </div>
+</div>
+<script>
+  function proceedToChecklist() {
+    const name = document.getElementById("customerName").value.trim();
+    if (!name) {
+      alert("Please enter the applicant's name.");
+      return;
+    }
+    document.getElementById("inputNameSection").style.display = "none";
+    document.getElementById("mainChecklist").style.display = "block";
+    document.getElementById("displayName").textContent = name;
+    loadCheckboxStates(name);
+  }
+
+  function saveChecklist() {
+    const name =
+      document.getElementById("customerName").value.trim() ||
+      document.getElementById("displayName").textContent.trim();
+    const checkboxes = document.querySelectorAll(
+      "#mainChecklist input[type='checkbox']"
+    );
+    let checkboxStates = {};
+    checkboxes.forEach((checkbox) => {
+      checkboxStates[checkbox.dataset.id] = checkbox.checked;
+    });
+    localStorage.setItem(name + "_checkboxStates", JSON.stringify(checkboxStates));
+    showSuccessMsg();
+  }
+
+  function showSuccessMsg() {
+    const msg = document.getElementById("successMsg");
+    msg.style.display = "block";
+    setTimeout(() => {
+      msg.style.display = "none";
+    }, 1600);
+  }
+
+  function loadCheckboxStates(name) {
+    const savedStates = localStorage.getItem(name + "_checkboxStates");
+    if (!savedStates) return;
+    const states = JSON.parse(savedStates);
+    const checkboxes = document.querySelectorAll(
+      "#mainChecklist input[type='checkbox']"
+    );
+    checkboxes.forEach((checkbox) => {
+      const id = checkbox.dataset.id;
+      if (states[id] !== undefined) {
+        checkbox.checked = states[id];
+      }
+    });
+  }
+</script>
+</body>
+</html>
